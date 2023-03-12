@@ -5,7 +5,7 @@ class TweetDAL:
         self.conn = psycopg2.connect(
             database="postgres",
             user='postgres',
-            password='Goodluck123!',
+            password='{your_pass_word}',
             host='localhost',
             port='5432'
         )
