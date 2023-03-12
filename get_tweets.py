@@ -21,7 +21,7 @@ class TweetSentimentClient:
         self.id_list = []
         ### get user_id of target users
         for name in screen_name:
-            res = client.get_user(username=name)
+            res = self.client.get_user(username=name)
             self.id_list.append(res.data.id)
 
         self.analyzer = SentimentIntensityAnalyzer()
@@ -72,7 +72,7 @@ class TweetSentimentClient:
             print(next_token)
             input_data = self.Update_Input_Data(response, input_data)
 
-            response = client.get_users_tweets(user_id, start_time=self.start_t_str,
+            response = self.client.get_users_tweets(user_id, start_time=self.start_t_str,
                                                tweet_fields=['context_annotations', 'created_at', 'public_metrics',
                                                              'author_id', 'conversation_id'],
                                                pagination_token=next_token, max_results=100)
@@ -122,3 +122,9 @@ class TweetSentimentClient:
                 replies.append(reply)
 
         return replies
+
+
+if __name__ == '__main__':
+    TweetSentimentClient().get_new_tweet_data()
+
+
